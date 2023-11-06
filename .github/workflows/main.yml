@@ -1,4 +1,4 @@
-- name: App Center
+  name: App Center
   # You may pin to the exact commit or the version.
   # uses: wzieba/AppCenter-Github-Action@70e33d4842b97b381833ad5c9c93a562b39d5d9f
   uses: wzieba/AppCenter-Github-Action@v1.3.4
