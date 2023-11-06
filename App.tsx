@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -13,9 +13,11 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
+import Crashes, {ErrorAttachmentLog} from 'appcenter-crashes';
 
 import {
   Colors,
@@ -61,6 +63,43 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  useEffect(() => {
+    (async () => {
+      const enabled = await Crashes.isEnabled();
+      console.log('sdjfhdjfhsd', enabled);
+    })();
+
+    Crashes.setListener({
+      // onBeforeSending: function (report) {
+      //   console.log('sdjfhdjfhsd', report);
+      //   // called after Crashes.process and before sending the crash.
+      // },
+      // onSendingSucceeded: function (report) {
+      //   console.log('sdjfhdjfhsd', report);
+      //   // called when crash report sent successfully.
+      // },
+      onSendingFailed: function (report) {
+        console.log('sdjfhdjfhsd', report);
+        // called when crash report couldn't be sent.
+      },
+      getErrorAttachments: function (report): ErrorAttachmentLog[] {
+        const textAttachment: ErrorAttachmentLog =
+          ErrorAttachmentLog.attachmentWithText(
+            'Hello text attachment!',
+            'hello.txt',
+          );
+        const binaryAttachment: ErrorAttachmentLog =
+          ErrorAttachmentLog.attachmentWithBinary(
+            `${report}`,
+            'logo.png',
+            'image/png',
+          );
+        return [textAttachment, binaryAttachment];
+      },
+      // Other callbacks must also be defined at the same time if used.
+      // Default values are used if a method with return parameter isn't defined.
+    });
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -71,26 +110,19 @@ function App(): JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
-        <View
+        <TouchableOpacity
+          onPress={() => Crashes.generateTestCrash()}
+          // onPress={() => {
+          //   throw new Error('error');
+          // }}
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: 'gray',
+            paddingVertical: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
+          <Text>Crash</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
