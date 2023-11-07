@@ -104,9 +104,6 @@ function App(): JSX.Element {
         style={backgroundStyle}>
         <TouchableOpacity
           onPress={() => Crashes.generateTestCrash()}
-          // onPress={() => {
-          //   throw new Error('error');
-          // }}
           style={{
             backgroundColor: 'gray',
             paddingVertical: 5,
