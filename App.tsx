@@ -70,10 +70,6 @@ function App(): JSX.Element {
     })();
 
     Crashes.setListener({
-      onSendingFailed: function (report) {
-        console.log('sdjfhdjfhsd', report);
-        // called when crash report couldn't be sent.
-      },
       getErrorAttachments: function (report): ErrorAttachmentLog[] {
         const textAttachment: ErrorAttachmentLog =
           ErrorAttachmentLog.attachmentWithText(
