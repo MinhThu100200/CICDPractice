@@ -69,28 +69,7 @@ function App(): JSX.Element {
       console.log('sdjfhdjfhsd', enabled);
     })();
 
-    Crashes.setListener({
-      onSendingFailed: function (report) {
-        console.log('sdjfhdjfhsd', report);
-        // called when crash report couldn't be sent.
-      },
-      getErrorAttachments: function (report): ErrorAttachmentLog[] {
-        const textAttachment: ErrorAttachmentLog =
-          ErrorAttachmentLog.attachmentWithText(
-            'Hello text attachment!',
-            'hello.txt',
-          );
-        const binaryAttachment: ErrorAttachmentLog =
-          ErrorAttachmentLog.attachmentWithBinary(
-            `${report}`,
-            'logo.png',
-            'image/png',
-          );
-        return [textAttachment, binaryAttachment];
-      },
-      // Other callbacks must also be defined at the same time if used.
-      // Default values are used if a method with return parameter isn't defined.
-    });
+   
   }, []);
 
   return (
