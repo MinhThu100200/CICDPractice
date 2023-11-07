@@ -63,43 +63,6 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  useEffect(() => {
-    (async () => {
-      const enabled = await Crashes.isEnabled();
-      console.log('sdjfhdjfhsd', enabled);
-    })();
-
-    Crashes.setListener({
-      // onBeforeSending: function (report) {
-      //   console.log('sdjfhdjfhsd', report);
-      //   // called after Crashes.process and before sending the crash.
-      // },
-      // onSendingSucceeded: function (report) {
-      //   console.log('sdjfhdjfhsd', report);
-      //   // called when crash report sent successfully.
-      // },
-      onSendingFailed: function (report) {
-        console.log('sdjfhdjfhsd', report);
-        // called when crash report couldn't be sent.
-      },
-      getErrorAttachments: function (report): ErrorAttachmentLog[] {
-        const textAttachment: ErrorAttachmentLog =
-          ErrorAttachmentLog.attachmentWithText(
-            'Hello text attachment!',
-            'hello.txt',
-          );
-        const binaryAttachment: ErrorAttachmentLog =
-          ErrorAttachmentLog.attachmentWithBinary(
-            `${report}`,
-            'logo.png',
-            'image/png',
-          );
-        return [textAttachment, binaryAttachment];
-      },
-      // Other callbacks must also be defined at the same time if used.
-      // Default values are used if a method with return parameter isn't defined.
-    });
-  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -112,9 +75,6 @@ function App(): JSX.Element {
         style={backgroundStyle}>
         <TouchableOpacity
           onPress={() => Crashes.generateTestCrash()}
-          // onPress={() => {
-          //   throw new Error('error');
-          // }}
           style={{
             backgroundColor: 'gray',
             paddingVertical: 5,
