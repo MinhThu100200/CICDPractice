@@ -63,14 +63,6 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  useEffect(() => {
-    (async () => {
-      const enabled = await Crashes.isEnabled();
-      console.log('sdjfhdjfhsd', enabled);
-    })();
-
-    
-  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
