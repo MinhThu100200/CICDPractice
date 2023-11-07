@@ -1,0 +1,25 @@
+-name: App Center
+  # You may pin to the exact commit or the version.
+  # uses: wzieba/AppCenter-Github-Action@70e33d4842b97b381833ad5c9c93a562b39d5d9f
+  uses: wzieba/AppCenter-Github-Action@v1.3.4
+  with:
+    # App name followed by username e.g. wzieba/Sample-App
+    appName: 
+    # Upload token - you can get one from appcenter.ms/settings
+    token: 
+    # Distribution group
+    group: 
+    # Artefact to upload (.apk or .ipa)
+    file: 
+    # Build version parameter required for .zip, .msi, .pkg and .dmg files
+    buildVersion: # optional
+    # Build number parameter required for macOS .pkg and .dmg files
+    buildNumber: # optional
+    # Release notes visible on release page
+    releaseNotes: # optional
+    # Generate release notes based on the latest git commit
+    gitReleaseNotes: # optional
+    # If true, send an email notification to the distribution group
+    notifyTesters: # optional
+    # If true, shows additional information from the action execution
+    debug: # optional
