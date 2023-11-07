@@ -70,14 +70,6 @@ function App(): JSX.Element {
     })();
 
     Crashes.setListener({
-      // onBeforeSending: function (report) {
-      //   console.log('sdjfhdjfhsd', report);
-      //   // called after Crashes.process and before sending the crash.
-      // },
-      // onSendingSucceeded: function (report) {
-      //   console.log('sdjfhdjfhsd', report);
-      //   // called when crash report sent successfully.
-      // },
       onSendingFailed: function (report) {
         console.log('sdjfhdjfhsd', report);
         // called when crash report couldn't be sent.
