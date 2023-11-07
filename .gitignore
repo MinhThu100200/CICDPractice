@@ -31,11 +31,11 @@ local.properties
 *.iml
 *.hprof
 .cxx/
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
+# # BUCK
+# buck-out/
+# \.buckd/
+# *.keystore
+# !debug.keystore
 
 # node.js
 #
